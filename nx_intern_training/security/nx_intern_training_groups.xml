@@ -30,6 +30,13 @@
         <field name="name">Admin</field>
         <field name="privilege_id" ref="privilege_intern_training"/>
         <field name="implied_ids" eval="[(4, ref('group_intern_training_manager'))]"/>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- Auto-assign Administrator users to the Admin Group -->
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4, ref('group_intern_training_admin'))]"/>
+    </record>
+    <record id="base.user_root" model="res.users">
+        <field name="groups_id" eval="[(4, ref('group_intern_training_admin'))]"/>
     </record>
 </odoo>
