@@ -1,0 +1,4 @@
+"program_id","day_number","title","learning_objectives","instructions","deliverables","estimated_hours","difficulty"
+"Odoo Functional Training",1,"Introduction to Odoo ERP","Understand what Odoo is and its architecture.","Watch the introduction video and navigate the interface.","Create a summary of Odoo apps.",2,"beginner"
+"Odoo Functional Training",2,"CRM & Lead Management","Learn how to manage leads, opportunities, and pipelines.","Create a pipeline, convert a lead, and schedule an activity.","Submit a screenshot of your CRM pipeline.",3,"beginner"
+"Odoo Functional Training",3,"Sales & Quotations","Learn how to create quotation templates and sales orders.","Configure a product, create a quote, and confirm the sale.","Submit a confirmed sales order PDF.",4,"beginner"
