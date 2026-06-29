@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="nx_intern_training_root_menu"
+              name="NerithonX Internship"
+              sequence="200"
+              web_icon="nx_intern_training,static/description/icon.png"
+              groups="group_intern_training_intern"/>
+
+    <!-- My Dashboard (top-level for quick access) -->
+    <menuitem id="nx_intern_training_menu_dashboard"
+              name="My Dashboard"
+              parent="nx_intern_training_root_menu"
+              action="nx_intern_daily_task_my_dashboard_action"
+              sequence="5"/>
+
+    <!-- Configuration sub-menu group -->
+    <menuitem id="nx_intern_training_menu_config"
+              name="Configuration"
+              parent="nx_intern_training_root_menu"
+              sequence="100"
+              groups="group_intern_training_admin"/>
+
+    <menuitem id="nx_intern_training_menu_programs"
+              name="Programs"
+              parent="nx_intern_training_menu_config"
+              action="nx_intern_program_action"
+              sequence="10"/>
+
+    <menuitem id="nx_intern_training_menu_roadmap_days"
+              name="Roadmap Days"
+              parent="nx_intern_training_menu_config"
+              action="nx_intern_roadmap_day_action"
+              sequence="20"/>
+
+    <!-- Operations sub-menu group -->
+    <menuitem id="nx_intern_training_menu_operations"
+              name="Operations"
+              parent="nx_intern_training_root_menu"
+              sequence="20"
+              groups="group_intern_training_manager"/>
+
+    <menuitem id="nx_intern_training_menu_enrollments"
+              name="Enrollments"
+              parent="nx_intern_training_menu_operations"
+              action="nx_intern_enrollment_action"
+              sequence="10"/>
+
+    <menuitem id="nx_intern_training_menu_daily_tasks"
+              name="Daily Tasks"
+              parent="nx_intern_training_menu_operations"
+              action="nx_intern_daily_task_action"
+              sequence="20"/>
+
+    <menuitem id="nx_intern_training_menu_submissions"
+              name="Submissions"
+              parent="nx_intern_training_menu_operations"
+              action="nx_intern_submission_action"
+              sequence="30"/>
+</odoo>

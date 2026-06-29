@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Intern rules: can only see own records                        -->
+    <!-- ============================================================ -->
+    <record id="rule_enrollment_intern" model="ir.rule">
+        <field name="name">Enrollment: Intern sees own</field>
+        <field name="model_id" ref="model_nx_intern_enrollment"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
+        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_daily_task_intern" model="ir.rule">
+        <field name="name">Daily Task: Intern sees own</field>
+        <field name="model_id" ref="model_nx_intern_daily_task"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
+        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_submission_intern" model="ir.rule">
+        <field name="name">Submission: Intern sees own</field>
+        <field name="model_id" ref="model_nx_intern_submission"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
+        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Manager rules: can see assigned interns' records              -->
+    <!-- ============================================================ -->
+    <record id="rule_enrollment_manager" model="ir.rule">
+        <field name="name">Enrollment: Manager sees assigned</field>
+        <field name="model_id" ref="model_nx_intern_enrollment"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_manager'))]"/>
+        <field name="domain_force">[('manager_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_daily_task_manager" model="ir.rule">
+        <field name="name">Daily Task: Manager sees assigned</field>
+        <field name="model_id" ref="model_nx_intern_daily_task"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_manager'))]"/>
+        <field name="domain_force">[('manager_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_submission_manager" model="ir.rule">
+        <field name="name">Submission: Manager sees assigned</field>
+        <field name="model_id" ref="model_nx_intern_submission"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_manager'))]"/>
+        <field name="domain_force">[('task_id.manager_id', '=', user.id)]</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Admin rules: full access                                      -->
+    <!-- ============================================================ -->
+    <record id="rule_enrollment_admin" model="ir.rule">
+        <field name="name">Enrollment: Admin sees all</field>
+        <field name="model_id" ref="model_nx_intern_enrollment"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <record id="rule_daily_task_admin" model="ir.rule">
+        <field name="name">Daily Task: Admin sees all</field>
+        <field name="model_id" ref="model_nx_intern_daily_task"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <record id="rule_submission_admin" model="ir.rule">
+        <field name="name">Submission: Admin sees all</field>
+        <field name="model_id" ref="model_nx_intern_submission"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+</odoo>

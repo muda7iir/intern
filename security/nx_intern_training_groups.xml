@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Category -->
+    <record id="module_category_nx_intern_training" model="ir.module.category">
+        <field name="name">NerithonX Internship</field>
+        <field name="sequence">200</field>
+    </record>
+
+    <!-- Intern Group -->
+    <record id="group_intern_training_intern" model="res.groups">
+        <field name="name">Intern</field>
+        <field name="category_id" ref="module_category_nx_intern_training"/>
+    </record>
+
+    <!-- Manager Group -->
+    <record id="group_intern_training_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_nx_intern_training"/>
+        <field name="implied_ids" eval="[(4, ref('group_intern_training_intern'))]"/>
+    </record>
+
+    <!-- Admin Group -->
+    <record id="group_intern_training_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="module_category_nx_intern_training"/>
+        <field name="implied_ids" eval="[(4, ref('group_intern_training_manager'))]"/>
+    </record>
+</odoo>

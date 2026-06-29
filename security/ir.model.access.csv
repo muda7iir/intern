@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nx_intern_program_admin,nx.intern.program.admin,model_nx_intern_program,group_intern_training_admin,1,1,1,1
+access_nx_intern_program_manager,nx.intern.program.manager,model_nx_intern_program,group_intern_training_manager,1,0,0,0
+access_nx_intern_program_intern,nx.intern.program.intern,model_nx_intern_program,group_intern_training_intern,1,0,0,0
+access_nx_intern_roadmap_day_admin,nx.intern.roadmap.day.admin,model_nx_intern_roadmap_day,group_intern_training_admin,1,1,1,1
+access_nx_intern_roadmap_day_manager,nx.intern.roadmap.day.manager,model_nx_intern_roadmap_day,group_intern_training_manager,1,0,0,0
+access_nx_intern_roadmap_day_intern,nx.intern.roadmap.day.intern,model_nx_intern_roadmap_day,group_intern_training_intern,1,0,0,0
+access_nx_intern_enrollment_admin,nx.intern.enrollment.admin,model_nx_intern_enrollment,group_intern_training_admin,1,1,1,1
+access_nx_intern_enrollment_manager,nx.intern.enrollment.manager,model_nx_intern_enrollment,group_intern_training_manager,1,1,1,0
+access_nx_intern_enrollment_intern,nx.intern.enrollment.intern,model_nx_intern_enrollment,group_intern_training_intern,1,0,0,0
+access_nx_intern_daily_task_admin,nx.intern.daily.task.admin,model_nx_intern_daily_task,group_intern_training_admin,1,1,1,1
+access_nx_intern_daily_task_manager,nx.intern.daily.task.manager,model_nx_intern_daily_task,group_intern_training_manager,1,1,0,0
+access_nx_intern_daily_task_intern,nx.intern.daily.task.intern,model_nx_intern_daily_task,group_intern_training_intern,1,0,0,0
+access_nx_intern_submission_admin,nx.intern.submission.admin,model_nx_intern_submission,group_intern_training_admin,1,1,1,1
+access_nx_intern_submission_manager,nx.intern.submission.manager,model_nx_intern_submission,group_intern_training_manager,1,1,0,0
+access_nx_intern_submission_intern,nx.intern.submission.intern,model_nx_intern_submission,group_intern_training_intern,1,1,1,0

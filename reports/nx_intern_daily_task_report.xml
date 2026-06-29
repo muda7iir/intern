@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_daily_task" model="ir.actions.report">
+        <field name="name">Daily Task Instructions</field>
+        <field name="model">nx.intern.daily.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nx_intern_training.report_daily_task_template</field>
+        <field name="report_file">nx_intern_training.report_daily_task_template</field>
+        <field name="binding_model_id" ref="model_nx_intern_daily_task"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Template -->
+    <template id="report_daily_task_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 style="color: #875A7B;">Daily Task Instructions</h2>
+                        <hr/>
+
+                        <table class="table table-bordered" style="margin-top: 20px;">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 30%; font-weight: bold; background-color: #f5f5f5;">Intern Name</td>
+                                    <td><t t-esc="doc.intern_user_id.name or doc.enrollment_id.intern_name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; background-color: #f5f5f5;">Program</td>
+                                    <td><t t-esc="doc.program_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; background-color: #f5f5f5;">Day Number</td>
+                                    <td><t t-esc="doc.day_number"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; background-color: #f5f5f5;">Task Title</td>
+                                    <td><t t-esc="doc.title"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; background-color: #f5f5f5;">Deadline</td>
+                                    <td><t t-esc="doc.deadline" t-options='{"widget": "date"}'/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top: 30px;">
+                            <h4 style="color: #875A7B;">Instructions</h4>
+                            <div t-if="doc.instructions">
+                                <t t-out="doc.instructions"/>
+                            </div>
+                            <p t-else="" class="text-muted">No instructions provided.</p>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <h4 style="color: #875A7B;">Deliverables</h4>
+                            <div t-if="doc.deliverables">
+                                <t t-out="doc.deliverables"/>
+                            </div>
+                            <p t-else="" class="text-muted">No deliverables specified.</p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

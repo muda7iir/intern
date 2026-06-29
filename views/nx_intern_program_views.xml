@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="nx_intern_program_view_list" model="ir.ui.view">
+        <field name="name">nx.intern.program.list</field>
+        <field name="model">nx.intern.program</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="duration_days"/>
+                <field name="roadmap_day_count" string="Days"/>
+                <field name="active" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="nx_intern_program_view_form" model="ir.ui.view">
+        <field name="name">nx.intern.program.form</field>
+        <field name="model">nx.intern.program</field>
+        <field name="arch" type="xml">
+            <form string="Training Program">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(nx_intern_training.nx_intern_roadmap_day_action)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-calendar"
+                                context="{'search_default_program_id': active_id}">
+                            <field name="roadmap_day_count" widget="statinfo" string="Roadmap Days"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Program Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="duration_days"/>
+                        </group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Roadmap Days" name="roadmap_days">
+                            <field name="roadmap_day_ids">
+                                <list editable="bottom">
+                                    <field name="day_number"/>
+                                    <field name="title"/>
+                                    <field name="estimated_hours"/>
+                                    <field name="difficulty"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="nx_intern_program_action" model="ir.actions.act_window">
+        <field name="name">Training Programs</field>
+        <field name="res_model">nx.intern.program</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first training program!
+            </p>
+            <p>Define internship programs with day-by-day roadmaps.</p>
+        </field>
+    </record>
+</odoo>

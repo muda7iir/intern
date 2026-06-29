@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="nx_intern_submission_view_list" model="ir.ui.view">
+        <field name="name">nx.intern.submission.list</field>
+        <field name="model">nx.intern.submission</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="task_id"/>
+                <field name="intern_user_id" widget="many2one_avatar_user"/>
+                <field name="score"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'submitted'"
+                       decoration-success="state == 'approved'"
+                       decoration-warning="state == 'revision_required'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="nx_intern_submission_view_form" model="ir.ui.view">
+        <field name="name">nx.intern.submission.form</field>
+        <field name="model">nx.intern.submission</field>
+        <field name="arch" type="xml">
+            <form string="Submission">
+                <header>
+                    <button name="action_submit"
+                            string="Submit"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state not in ('draft', 'revision_required')"/>
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_request_revision"
+                            string="Request Revision"
+                            type="object"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_reject"
+                            string="Reject"
+                            type="object"
+                            class="btn-danger"
+                            invisible="state != 'submitted'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,approved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Submission Info">
+                            <field name="task_id"/>
+                            <field name="intern_user_id" widget="many2one_avatar_user"/>
+                        </group>
+                        <group string="Review">
+                            <field name="score"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Submission Notes" name="notes">
+                            <field name="submission_notes"/>
+                        </page>
+                        <page string="Attachments" name="attachments">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                        <page string="Manager Feedback" name="feedback">
+                            <field name="manager_feedback"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="nx_intern_submission_view_search" model="ir.ui.view">
+        <field name="name">nx.intern.submission.search</field>
+        <field name="model">nx.intern.submission</field>
+        <field name="arch" type="xml">
+            <search string="Search Submissions">
+                <field name="task_id"/>
+                <field name="intern_user_id"/>
+                <filter string="My Submissions" name="filter_my_submissions"
+                        domain="[('intern_user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Submitted" name="filter_submitted" domain="[('state', '=', 'submitted')]"/>
+                <filter string="Approved" name="filter_approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Revision Required" name="filter_revision" domain="[('state', '=', 'revision_required')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
+                    <filter string="Intern" name="groupby_intern" context="{'group_by': 'intern_user_id'}"/>
+                    <filter string="Task" name="groupby_task" context="{'group_by': 'task_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="nx_intern_submission_action" model="ir.actions.act_window">
+        <field name="name">Submissions</field>
+        <field name="res_model">nx.intern.submission</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="nx_intern_submission_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No submissions yet.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="nx_intern_enrollment_view_list" model="ir.ui.view">
+        <field name="name">nx.intern.enrollment.list</field>
+        <field name="model">nx.intern.enrollment</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'draft'" decoration-success="state == 'running'" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="intern_name"/>
+                <field name="program_id"/>
+                <field name="joining_date"/>
+                <field name="manager_id" widget="many2one_avatar_user"/>
+                <field name="current_day"/>
+                <field name="progress_percentage" widget="progressbar"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state in ('running', 'completed')"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="nx_intern_enrollment_view_form" model="ir.ui.view">
+        <field name="name">nx.intern.enrollment.form</field>
+        <field name="model">nx.intern.enrollment</field>
+        <field name="arch" type="xml">
+            <form string="Intern Enrollment">
+                <header>
+                    <button name="action_start_internship"
+                            string="Start Internship"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'draft'"
+                            confirm="This will generate daily tasks from the program roadmap. Continue?"/>
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            invisible="state not in ('draft', 'running')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,running,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_tasks"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tasks">
+                            <field name="task_count" widget="statinfo" string="Tasks"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Intern Information">
+                            <field name="intern_name"/>
+                            <field name="intern_email" widget="email"/>
+                            <field name="intern_user_id" widget="many2one_avatar_user"/>
+                        </group>
+                        <group string="Program Details">
+                            <field name="program_id"/>
+                            <field name="joining_date"/>
+                            <field name="manager_id" widget="many2one_avatar_user"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="current_day"/>
+                            <field name="progress_percentage" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Daily Tasks" name="tasks">
+                            <field name="task_ids" readonly="1">
+                                <list>
+                                    <field name="day_number"/>
+                                    <field name="title"/>
+                                    <field name="deadline"/>
+                                    <field name="state" widget="badge"
+                                           decoration-info="state == 'pending'"
+                                           decoration-success="state == 'approved'"
+                                           decoration-warning="state in ('submitted', 'revision_required')"
+                                           decoration-danger="state == 'rejected'"
+                                           decoration-muted="state == 'locked'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="nx_intern_enrollment_view_kanban" model="ir.ui.view">
+        <field name="name">nx.intern.enrollment.kanban</field>
+        <field name="model">nx.intern.enrollment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="intern_name"/>
+                <field name="program_id"/>
+                <field name="state"/>
+                <field name="progress_percentage"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_content">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div>
+                                <field name="intern_name"/>
+                            </div>
+                            <div class="text-muted">
+                                <field name="program_id"/>
+                            </div>
+                            <div>
+                                <field name="progress_percentage" widget="progressbar"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="nx_intern_enrollment_view_search" model="ir.ui.view">
+        <field name="name">nx.intern.enrollment.search</field>
+        <field name="model">nx.intern.enrollment</field>
+        <field name="arch" type="xml">
+            <search string="Search Enrollments">
+                <field name="name"/>
+                <field name="intern_name"/>
+                <field name="program_id"/>
+                <field name="manager_id"/>
+                <filter string="Draft" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Running" name="filter_running" domain="[('state', '=', 'running')]"/>
+                <filter string="Completed" name="filter_completed" domain="[('state', '=', 'completed')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
+                    <filter string="Program" name="groupby_program" context="{'group_by': 'program_id'}"/>
+                    <filter string="Manager" name="groupby_manager" context="{'group_by': 'manager_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="nx_intern_enrollment_action" model="ir.actions.act_window">
+        <field name="name">Enrollments</field>
+        <field name="res_model">nx.intern.enrollment</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="search_view_id" ref="nx_intern_enrollment_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first enrollment!
+            </p>
+            <p>Enroll interns into training programs and track their progress.</p>
+        </field>
+    </record>
+</odoo>
