@@ -131,7 +131,7 @@
                 <filter string="Submitted" name="filter_submitted" domain="[('state', '=', 'submitted')]"/>
                 <filter string="Approved" name="filter_approved" domain="[('state', '=', 'approved')]"/>
                 <separator/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
                     <filter string="Intern" name="groupby_intern" context="{'group_by': 'intern_user_id'}"/>
                     <filter string="Program" name="groupby_program" context="{'group_by': 'program_id'}"/>

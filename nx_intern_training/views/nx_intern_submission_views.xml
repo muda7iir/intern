@@ -89,7 +89,7 @@
                 <filter string="Approved" name="filter_approved" domain="[('state', '=', 'approved')]"/>
                 <filter string="Revision Required" name="filter_revision" domain="[('state', '=', 'revision_required')]"/>
                 <separator/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
                     <filter string="Intern" name="groupby_intern" context="{'group_by': 'intern_user_id'}"/>
                     <filter string="Task" name="groupby_task" context="{'group_by': 'task_id'}"/>

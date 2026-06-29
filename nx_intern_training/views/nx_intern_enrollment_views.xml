@@ -143,7 +143,7 @@
                 <filter string="Running" name="filter_running" domain="[('state', '=', 'running')]"/>
                 <filter string="Completed" name="filter_completed" domain="[('state', '=', 'completed')]"/>
                 <separator/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
                     <filter string="Program" name="groupby_program" context="{'group_by': 'program_id'}"/>
                     <filter string="Manager" name="groupby_manager" context="{'group_by': 'manager_id'}"/>
