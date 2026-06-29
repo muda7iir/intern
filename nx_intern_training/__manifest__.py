@@ -30,6 +30,11 @@
         # Reports
         'reports/nx_intern_daily_task_report.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'nx_intern_training/static/src/js/popover_fix.js',
+        ],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,
