@@ -34,9 +34,9 @@
 
     <!-- Auto-assign Administrator users to the Admin Group -->
     <record id="base.user_admin" model="res.users">
-        <field name="groups_id" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="group_ids" eval="[(4, ref('group_intern_training_admin'))]"/>
     </record>
     <record id="base.user_root" model="res.users">
-        <field name="groups_id" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="group_ids" eval="[(4, ref('group_intern_training_admin'))]"/>
     </record>
 </odoo>
