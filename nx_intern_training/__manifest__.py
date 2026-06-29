@@ -21,11 +21,11 @@
         # Data
         'data/nx_intern_data.xml',
         # Views
-        'views/nx_intern_program_views.xml',
         'views/nx_intern_roadmap_day_views.xml',
-        'views/nx_intern_enrollment_views.xml',
-        'views/nx_intern_daily_task_views.xml',
+        'views/nx_intern_program_views.xml',
         'views/nx_intern_submission_views.xml',
+        'views/nx_intern_daily_task_views.xml',
+        'views/nx_intern_enrollment_views.xml',
         'views/nx_intern_menus.xml',
         # Reports
         'reports/nx_intern_daily_task_report.xml',
