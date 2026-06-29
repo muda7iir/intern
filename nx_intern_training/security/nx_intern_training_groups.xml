@@ -30,5 +30,6 @@
         <field name="name">Admin</field>
         <field name="privilege_id" ref="privilege_intern_training"/>
         <field name="implied_ids" eval="[(4, ref('group_intern_training_manager'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 </odoo>
