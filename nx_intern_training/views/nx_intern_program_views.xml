@@ -27,7 +27,7 @@
                                 type="action"
                                 class="oe_stat_button"
                                 icon="fa-calendar"
-                                context="{'search_default_program_id': active_id}">
+                                context="{'search_default_program_id': id}">
                             <field name="roadmap_day_count" widget="statinfo" string="Roadmap Days"/>
                         </button>
                     </div>

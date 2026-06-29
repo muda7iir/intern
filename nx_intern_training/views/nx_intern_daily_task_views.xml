@@ -37,7 +37,7 @@
                                 type="action"
                                 class="oe_stat_button"
                                 icon="fa-upload"
-                                context="{'search_default_task_id': active_id, 'default_task_id': active_id}">
+                                context="{'search_default_task_id': id, 'default_task_id': id}">
                             <field name="submission_count" widget="statinfo" string="Submissions"/>
                         </button>
                     </div>
