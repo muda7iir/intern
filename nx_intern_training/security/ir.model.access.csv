@@ -35,3 +35,6 @@ access_intern_res_company,intern.res.company,base.model_res_company,group_intern
 access_intern_mail_message,intern.mail.message,mail.model_mail_message,group_intern_training_intern,1,1,1,0
 access_intern_mail_followers,intern.mail.followers,mail.model_mail_followers,group_intern_training_intern,1,1,1,1
 access_intern_mail_notification,intern.mail.notification,mail.model_mail_notification,group_intern_training_intern,1,1,1,0
+access_intern_act_window_view,intern.ir.actions.act_window.view,base.model_ir_actions_act_window_view,group_intern_training_intern,1,0,0,0
+access_intern_actions,intern.ir.actions.actions,base.model_ir_actions_actions,group_intern_training_intern,1,0,0,0
+
