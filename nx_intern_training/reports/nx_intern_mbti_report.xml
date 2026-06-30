@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_mbti_personality" model="ir.actions.report">
+        <field name="name">MBTI Personality Report</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nx_intern_training.report_mbti_personality_template</field>
+        <field name="report_file">nx_intern_training.report_mbti_personality_template</field>
+        <field name="binding_model_id" ref="model_nx_intern_personality_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Template -->
+    <template id="report_mbti_personality_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center" style="margin-bottom: 30px;">
+                            <h1 style="color: #875A7B; font-weight: bold; margin-bottom: 5px;">NerithonX Personality Intelligence Report</h1>
+                            <p class="text-muted" style="font-size: 1.1rem;">Myers-Briggs Type Indicator (MBTI) Analysis</p>
+                        </div>
+                        <hr/>
+
+                        <!-- Intern Profile & MBTI Type -->
+                        <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight: bold; width: 40%;">Intern Name:</td>
+                                            <td><t t-esc="doc.user_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">Assigned Track:</td>
+                                            <td><t t-esc="doc.internship_track"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">Recommended Role:</td>
+                                            <td><t t-esc="doc.recommended_role"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div style="border: 2px solid #875A7B; border-radius: 10px; padding: 15px; background-color: #fcf8fa; display: inline-block; min-width: 180px;">
+                                    <span style="font-size: 1rem; color: #875A7B; display: block; text-transform: uppercase; font-weight: bold;">MBTI Personality Type</span>
+                                    <span style="font-size: 3rem; font-weight: bold; color: #875A7B; line-height: 1;"><t t-esc="doc.mbti_type"/></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Core Characteristics -->
+                        <div style="margin-top: 30px;">
+                            <h3 style="color: #875A7B; border-bottom: 2px solid #875A7B; padding-bottom: 5px;">Personality Profile</h3>
+                            
+                            <div style="margin-top: 15px; margin-bottom: 20px;">
+                                <h5 style="color: #28a745; font-weight: bold;"><i class="fa fa-plus-circle"></i> Key Strengths</h5>
+                                <p style="font-size: 1.05rem; line-height: 1.5;"><t t-esc="doc.strengths"/></p>
+                            </div>
+                            
+                            <div style="margin-top: 15px; margin-bottom: 20px;">
+                                <h5 style="color: #dc3545; font-weight: bold;"><i class="fa fa-minus-circle"></i> Areas for Growth &amp; Weaknesses</h5>
+                                <p style="font-size: 1.05rem; line-height: 1.5;"><t t-esc="doc.weaknesses"/></p>
+                            </div>
+                            
+                            <div style="margin-top: 15px; margin-bottom: 20px;">
+                                <h5 style="color: #17a2b8; font-weight: bold;"><i class="fa fa-comments"></i> Communication Style</h5>
+                                <p style="font-size: 1.05rem; line-height: 1.5;"><t t-esc="doc.communication_style"/></p>
+                            </div>
+                        </div>
+
+                        <!-- Manager Evaluation Section -->
+                        <div style="margin-top: 40px; page-break-inside: avoid;">
+                            <h3 style="color: #875A7B; border-bottom: 2px solid #875A7B; padding-bottom: 5px;">Manager's Evaluation &amp; Notes</h3>
+                            <div style="border: 1px solid #dee2e6; border-radius: 5px; min-height: 150px; padding: 15px; margin-top: 15px; background-color: #fafafa;">
+                                <t t-if="doc.manager_notes">
+                                    <p style="font-size: 1.05rem; line-height: 1.5; white-space: pre-wrap;"><t t-esc="doc.manager_notes"/></p>
+                                </t>
+                                <t t-else="">
+                                    <p class="text-muted" style="font-style: italic;">No evaluation notes added by the manager yet.</p>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- Footer Signatures -->
+                        <div class="row" style="margin-top: 80px; page-break-inside: avoid;">
+                            <div class="col-6 text-center">
+                                <div style="border-top: 1px solid #000; width: 80%; margin: 0 auto; padding-top: 5px;">
+                                    <p style="font-weight: bold; margin-bottom: 0;">Intern Signature</p>
+                                    <p class="text-muted" style="font-size: 0.9rem;">Date: ____/____/________</p>
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div style="border-top: 1px solid #000; width: 80%; margin: 0 auto; padding-top: 5px;">
+                                    <p style="font-weight: bold; margin-bottom: 0;">Manager Signature</p>
+                                    <p class="text-muted" style="font-size: 0.9rem;">Date: ____/____/________</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

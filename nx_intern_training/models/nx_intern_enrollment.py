@@ -78,6 +78,20 @@ class NxInternEnrollment(models.Model):
         string='Tasks',
         compute='_compute_task_count',
     )
+    mbti_type = fields.Char(
+        string='MBTI Type',
+        related='personality_id.mbti_type',
+        store=True,
+    )
+    personality_id = fields.Many2one(
+        'nx.intern.personality.report',
+        string='Personality Report',
+        tracking=True,
+    )
+    recommended_track = fields.Char(
+        string='Recommended Track',
+        tracking=True,
+    )
 
     # ---- Computed -------------------------------------------------------
 

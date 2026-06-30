@@ -14,3 +14,10 @@ access_nx_intern_daily_task_intern,nx.intern.daily.task.intern,model_nx_intern_d
 access_nx_intern_submission_admin,nx.intern.submission.admin,model_nx_intern_submission,group_intern_training_admin,1,1,1,1
 access_nx_intern_submission_manager,nx.intern.submission.manager,model_nx_intern_submission,group_intern_training_manager,1,1,0,0
 access_nx_intern_submission_intern,nx.intern.submission.intern,model_nx_intern_submission,group_intern_training_intern,1,1,1,0
+access_nx_intern_mbti_wizard_admin,nx.intern.mbti.wizard.admin,model_nx_intern_mbti_wizard,group_intern_training_admin,1,1,1,1
+access_nx_intern_mbti_wizard_manager,nx.intern.mbti.wizard.manager,model_nx_intern_mbti_wizard,group_intern_training_manager,1,1,1,1
+access_nx_intern_mbti_wizard_intern,nx.intern.mbti.wizard.intern,model_nx_intern_mbti_wizard,group_intern_training_intern,1,1,1,1
+access_nx_intern_personality_report_admin,nx.intern.personality.report.admin,model_nx_intern_personality_report,group_intern_training_admin,1,1,1,1
+access_nx_intern_personality_report_manager,nx.intern.personality.report.manager,model_nx_intern_personality_report,group_intern_training_manager,1,1,1,0
+access_nx_intern_personality_report_intern,nx.intern.personality.report.intern,model_nx_intern_personality_report,group_intern_training_intern,1,0,0,0
+

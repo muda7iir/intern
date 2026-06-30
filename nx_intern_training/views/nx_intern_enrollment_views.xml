@@ -11,6 +11,8 @@
                 <field name="program_id"/>
                 <field name="joining_date"/>
                 <field name="manager_id" widget="many2one_avatar_user"/>
+                <field name="mbti_type"/>
+                <field name="recommended_track"/>
                 <field name="current_day"/>
                 <field name="progress_percentage" widget="progressbar"/>
                 <field name="state" widget="badge"
@@ -68,7 +70,12 @@
                         </group>
                     </group>
                     <group>
-                        <group>
+                        <group string="Personality Intelligence">
+                            <field name="mbti_type" readonly="1"/>
+                            <field name="personality_id" readonly="1"/>
+                            <field name="recommended_track" readonly="1"/>
+                        </group>
+                        <group string="Internship Progress">
                             <field name="current_day"/>
                             <field name="progress_percentage" widget="progressbar"/>
                         </group>

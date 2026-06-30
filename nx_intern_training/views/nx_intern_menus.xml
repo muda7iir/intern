@@ -7,11 +7,33 @@
               web_icon="nx_intern_training,static/description/icon.png"
               groups="group_intern_training_intern"/>
 
-    <!-- My Dashboard (top-level for quick access) -->
+    <!-- Server Action to Check MBTI Onboarding -->
+    <record id="action_check_mbti_onboarding" model="ir.actions.server">
+        <field name="name">Check MBTI Onboarding</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="state">code</field>
+        <field name="code">
+report = env['nx.intern.personality.report'].search([('user_id', '=', env.user.id)], limit=1)
+is_intern = env.user.has_group('nx_intern_training.group_intern_training_intern') and not env.user.has_group('nx_intern_training.group_intern_training_manager')
+if is_intern and not report:
+    action = {
+        'name': 'MBTI Personality Assessment',
+        'type': 'ir.actions.act_window',
+        'res_model': 'nx.intern.mbti.wizard',
+        'view_mode': 'form',
+        'target': 'new',
+        'context': {'dialog_size': 'medium'},
+    }
+else:
+    action = env.ref('nx_intern_training.nx_intern_daily_task_my_dashboard_action').read()[0]
+        </field>
+    </record>
+
+    <!-- My Dashboard (top-level for quick access, points to the Server Action) -->
     <menuitem id="nx_intern_training_menu_dashboard"
               name="My Dashboard"
               parent="nx_intern_training_root_menu"
-              action="nx_intern_daily_task_my_dashboard_action"
+              action="action_check_mbti_onboarding"
               sequence="5"/>
 
     <!-- Configuration sub-menu group -->
@@ -57,4 +79,10 @@
               parent="nx_intern_training_menu_operations"
               action="nx_intern_submission_action"
               sequence="30"/>
+
+    <menuitem id="nx_intern_training_menu_personality_reports"
+              name="Personality Reports"
+              parent="nx_intern_training_menu_operations"
+              action="nx_intern_personality_report_action"
+              sequence="40"/>
 </odoo>

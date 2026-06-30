@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="nx_intern_personality_report_view_list" model="ir.ui.view">
+        <field name="name">nx.intern.personality.report.list</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="user_id"/>
+                <field name="mbti_type"/>
+                <field name="recommended_role"/>
+                <field name="internship_track"/>
+                <field name="risk_level" widget="badge"
+                       decoration-success="risk_level == 'low'"
+                       decoration-warning="risk_level == 'medium'"
+                       decoration-danger="risk_level == 'high'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="nx_intern_personality_report_view_form" model="ir.ui.view">
+        <field name="name">nx.intern.personality.report.form</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="arch" type="xml">
+            <form string="Personality Report">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="user_id" string="Intern Name"/>
+                        <h1>
+                            <field name="user_id" options="{'no_open': True}"/>
+                        </h1>
+                        <h2>
+                            MBTI: <field name="mbti_type" readonly="1" class="oe_inline text-primary"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group string="Classification">
+                            <field name="internship_track" readonly="1"/>
+                            <field name="recommended_role" readonly="1"/>
+                        </group>
+                        <group string="Risk Assessment">
+                            <field name="risk_level" readonly="1" widget="badge"
+                                   decoration-success="risk_level == 'low'"
+                                   decoration-warning="risk_level == 'medium'"
+                                   decoration-danger="risk_level == 'high'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personality Characteristics" name="characteristics">
+                            <group>
+                                <field name="strengths" readonly="1"/>
+                                <field name="weaknesses" readonly="1"/>
+                                <field name="communication_style" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Manager Evaluation" name="manager_eval">
+                            <group>
+                                <field name="manager_notes" placeholder="Enter evaluation notes, observations, and track adjustments..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="nx_intern_personality_report_view_search" model="ir.ui.view">
+        <field name="name">nx.intern.personality.report.search</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="arch" type="xml">
+            <search string="Search Personality Reports">
+                <field name="user_id"/>
+                <field name="mbti_type"/>
+                <field name="internship_track"/>
+                <filter string="Low Risk" name="risk_low" domain="[('risk_level', '=', 'low')]"/>
+                <filter string="Medium Risk" name="risk_medium" domain="[('risk_level', '=', 'medium')]"/>
+                <filter string="High Risk" name="risk_high" domain="[('risk_level', '=', 'high')]"/>
+                <group>
+                    <filter string="MBTI Type" name="groupby_mbti" context="{'group_by': 'mbti_type'}"/>
+                    <filter string="Recommended Track" name="groupby_track" context="{'group_by': 'internship_track'}"/>
+                    <filter string="Risk Level" name="groupby_risk" context="{'group_by': 'risk_level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="nx_intern_personality_report_view_graph" model="ir.ui.view">
+        <field name="name">nx.intern.personality.report.graph</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="arch" type="xml">
+            <graph string="MBTI Personality Distribution" type="bar" sample="1">
+                <field name="mbti_type" type="row"/>
+                <field name="risk_level" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="nx_intern_personality_report_view_pivot" model="ir.ui.view">
+        <field name="name">nx.intern.personality.report.pivot</field>
+        <field name="model">nx.intern.personality.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Personality Analytics" sample="1">
+                <field name="internship_track" type="row"/>
+                <field name="risk_level" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="nx_intern_personality_report_action" model="ir.actions.act_window">
+        <field name="name">Personality Intelligence Reports</field>
+        <field name="res_model">nx.intern.personality.report</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="search_view_id" ref="nx_intern_personality_report_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No personality reports generated yet.
+            </p>
+            <p>Reports are automatically generated when interns complete their MBTI onboarding wizard.</p>
+        </field>
+    </record>
+</odoo>

@@ -21,6 +21,8 @@
         # Data
         'data/nx_intern_data.xml',
         # Views
+        'views/nx_intern_mbti_wizard_views.xml',
+        'views/nx_intern_personality_report_views.xml',
         'views/nx_intern_roadmap_day_views.xml',
         'views/nx_intern_program_views.xml',
         'views/nx_intern_submission_views.xml',
@@ -29,6 +31,7 @@
         'views/nx_intern_menus.xml',
         # Reports
         'reports/nx_intern_daily_task_report.xml',
+        'reports/nx_intern_mbti_report.xml',
     ],
     'assets': {
         'web.assets_backend': [

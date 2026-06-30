@@ -7,21 +7,21 @@
         <field name="name">Enrollment: Intern sees own</field>
         <field name="model_id" ref="model_nx_intern_enrollment"/>
         <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
-        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+        <field name="domain_force">[('intern_user_id', '=', user.id), ('intern_user_id.mbti_completed', '=', True)]</field>
     </record>
 
     <record id="rule_daily_task_intern" model="ir.rule">
         <field name="name">Daily Task: Intern sees own</field>
         <field name="model_id" ref="model_nx_intern_daily_task"/>
         <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
-        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+        <field name="domain_force">[('intern_user_id', '=', user.id), ('intern_user_id.mbti_completed', '=', True)]</field>
     </record>
 
     <record id="rule_submission_intern" model="ir.rule">
         <field name="name">Submission: Intern sees own</field>
         <field name="model_id" ref="model_nx_intern_submission"/>
         <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
-        <field name="domain_force">[('intern_user_id', '=', user.id)]</field>
+        <field name="domain_force">[('intern_user_id', '=', user.id), ('intern_user_id.mbti_completed', '=', True)]</field>
     </record>
 
     <!-- ============================================================ -->
@@ -68,6 +68,30 @@
     <record id="rule_submission_admin" model="ir.rule">
         <field name="name">Submission: Admin sees all</field>
         <field name="model_id" ref="model_nx_intern_submission"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_admin'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Personality Report rules                                      -->
+    <!-- ============================================================ -->
+    <record id="rule_personality_report_intern" model="ir.rule">
+        <field name="name">Personality Report: Intern sees own</field>
+        <field name="model_id" ref="model_nx_intern_personality_report"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_intern'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_personality_report_manager" model="ir.rule">
+        <field name="name">Personality Report: Manager sees all</field>
+        <field name="model_id" ref="model_nx_intern_personality_report"/>
+        <field name="groups" eval="[(4, ref('group_intern_training_manager'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <record id="rule_personality_report_admin" model="ir.rule">
+        <field name="name">Personality Report: Admin sees all</field>
+        <field name="model_id" ref="model_nx_intern_personality_report"/>
         <field name="groups" eval="[(4, ref('group_intern_training_admin'))]"/>
         <field name="domain_force">[(1, '=', 1)]</field>
     </record>
