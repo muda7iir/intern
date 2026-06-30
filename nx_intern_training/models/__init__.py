@@ -5,4 +5,5 @@ from . import nx_intern_daily_task
 from . import nx_intern_submission
 from . import nx_intern_personality_report
 from . import nx_intern_mbti_wizard
+from . import nx_intern_config_settings
 from . import res_users

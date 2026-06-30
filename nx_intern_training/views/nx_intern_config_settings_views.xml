@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="nx_intern_config_settings_view_form" model="ir.ui.view">
+        <field name="name">nx.intern.config.settings.form</field>
+        <field name="model">nx.intern.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="NerithonX Internship" string="NerithonX Internship" data-key="nx_intern_training">
+                    <block title="Internship Overview" name="internship_overview">
+                        <setting string="Quick Statistics" help="Overview of your internship platform.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <div class="col-lg-3">
+                                        <button name="action_open_intern_users" type="object" class="btn btn-link" icon="fa-users">
+                                            <field name="intern_count" class="oe_inline"/> Interns
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button name="action_open_programs" type="object" class="btn btn-link" icon="fa-book">
+                                            <field name="program_count" class="oe_inline"/> Programs
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button name="action_open_enrollments" type="object" class="btn btn-link" icon="fa-graduation-cap">
+                                            <field name="enrollment_count" class="oe_inline"/> Active Enrollments
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button name="action_open_personality_reports" type="object" class="btn btn-link" icon="fa-brain">
+                                            <field name="personality_report_count" class="oe_inline"/> MBTI Reports
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Intern User Management" name="intern_management">
+                        <setting string="Create a New Intern User" help="Add a new user and automatically assign them the Intern access group.">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="action_create_intern_user" type="object"
+                                            string="Create New Intern" class="btn-primary"
+                                            icon="fa-user-plus"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="View All Intern Users" help="See a list of all users assigned to the Intern group.">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="action_open_intern_users" type="object"
+                                            string="View Interns" class="btn-secondary"
+                                            icon="fa-users"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Default Settings" name="default_settings">
+                        <setting string="Default Training Program" help="Set a default training program for new enrollments.">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="default_program_id" class="col-lg-3 o_light_label"/>
+                                    <field name="default_program_id"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="nx_intern_config_settings_action" model="ir.actions.act_window">
+        <field name="name">NerithonX Internship Settings</field>
+        <field name="res_model">nx.intern.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'nx_intern_training'}</field>
+    </record>
+</odoo>

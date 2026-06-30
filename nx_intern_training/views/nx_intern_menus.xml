@@ -55,6 +55,12 @@ else:
               action="nx_intern_roadmap_day_action"
               sequence="20"/>
 
+    <menuitem id="nx_intern_training_menu_settings"
+              name="Settings"
+              parent="nx_intern_training_menu_config"
+              action="nx_intern_config_settings_action"
+              sequence="30"/>
+
     <!-- Operations sub-menu group -->
     <menuitem id="nx_intern_training_menu_operations"
               name="Operations"

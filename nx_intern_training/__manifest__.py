@@ -28,6 +28,7 @@
         'views/nx_intern_submission_views.xml',
         'views/nx_intern_daily_task_views.xml',
         'views/nx_intern_enrollment_views.xml',
+        'views/nx_intern_config_settings_views.xml',
         'views/nx_intern_menus.xml',
         # Reports
         'reports/nx_intern_daily_task_report.xml',
