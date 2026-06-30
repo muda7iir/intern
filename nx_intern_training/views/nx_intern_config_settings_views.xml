@@ -74,7 +74,7 @@
         <field name="name">NerithonX Internship Settings</field>
         <field name="res_model">nx.intern.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
+        <field name="target">current</field>
         <field name="context">{'module': 'nx_intern_training'}</field>
     </record>
 </odoo>
