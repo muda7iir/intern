@@ -139,8 +139,8 @@ class NxInternMbtiWizard(models.TransientModel):
         group_manager = self.env.ref('nx_intern_training.group_intern_training_manager')
         group_admin = self.env.ref('nx_intern_training.group_intern_training_admin')
         
-        managers = group_manager.users
-        admins = group_admin.users
+        managers = group_manager.user_ids
+        admins = group_admin.user_ids
 
         # A) Message to Manager
         manager_msg = _(
