@@ -38,7 +38,7 @@ class NxInternProgram(models.Model):
         help='Day-by-day roadmap for this program.',
     )
     roadmap_day_count = fields.Integer(
-        string='Roadmap Days',
+        string='Roadmap Day Count',
         compute='_compute_roadmap_day_count',
     )
 

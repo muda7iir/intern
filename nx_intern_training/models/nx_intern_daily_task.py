@@ -65,7 +65,7 @@ class NxInternDailyTask(models.Model):
         string='Submissions',
     )
     submission_count = fields.Integer(
-        string='Submissions',
+        string='Submission Count',
         compute='_compute_submission_count',
     )
 
